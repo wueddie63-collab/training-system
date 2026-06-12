@@ -74,20 +74,40 @@
                                 <div class="root-node">🛣️ 道路線形設計</div>
                                 <ul>
                                     <li>
-                                        <div class="process-node">平面線形 (Horizontal)</div>
-                                        <ul><li><div class="data-node">📌 直線長度上限 <code>20 * V</code><br>🔍 圓曲線半徑與克羅索緩和曲線控制</div></li></ul>
+                                        <div class="process-node">1. 公路 (Highway)</div>
+                                        <ul>
+                                            <li>
+                                                <div class="data-node">
+                                                    📘 依據：公路路線設計規範<br>
+                                                    📌 線形特點：高速率高標準，強調長直線與大半徑圓曲線<br>
+                                                    📊 控制指標：最大超高率 <code>e_max = 6%~8%</code>，嚴格檢算停止視距(SSD)與超車視距
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
-                                        <div class="process-node">縱斷面設計 (Vertical)</div>
-                                        <ul><li><div class="data-node">🔍 最大縱坡 <code>3% ~ 9%</code> / 最小縱坡 <code>&ge; 0.3%</code><br>📌 二次拋物線豎曲線與停止視距 (SSD) 確保</div></li></ul>
+                                        <div class="process-node">2. 市區道路 (Urban Road)</div>
+                                        <ul>
+                                            <li>
+                                                <div class="data-node">
+                                                    📘 依據：市區道路工程設計規範<br>
+                                                    📌 線形特點：受限路權與交叉路口，速率較低，重視橫斷面多功能配置<br>
+                                                    📊 控制指標：標準快車道寬 <code>3.25m ~ 3.50m</code>，標準路拱 <code>1.5% ~ 2.0%</code>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
-                                        <div class="process-node">橫斷面幾何 (Cross Section)</div>
-                                        <ul><li><div class="data-node">📌 快車道寬 <code>3.25m ~ 3.50m</code><br>🔍 標準路拱 <code>1.5% ~ 2.0%</code> 橫坡與小半徑拓寬</div></li></ul>
-                                    </li>
-                                    <li>
-                                        <div class="process-node">路面結構結構設計</div>
-                                        <ul><li><div class="data-node">📊 柔性路面：<code>AASHTO SN</code> 當量軸重設計<br>📊 剛性路面：版塊撓曲應力控制 / <code>IRI &le; 2.5~3.5</code></div></li></ul>
+                                        <div class="process-node">3. 農路 (Agricultural Road)</div>
+                                        <ul>
+                                            <li>
+                                                <div class="data-node">
+                                                    📘 依據：農路設計標準<br>
+                                                    📌 線形特點：地形起伏大且路幅狹窄，採低設計速率以適應地形<br>
+                                                    📊 控制指標：容許較大之縱坡度（部分路段可達 <code>12%~15%</code>）與極小彎道半徑
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
