@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程項目教育訓練與數據管理系統 - 純圖表版</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #f4f6f9; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+        .navbar-brand { font-weight: bold; letter-spacing: 1px; }
+        .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-radius: 8px; background-color: white; }
+        
+        /* 心智圖樹狀結構 CSS */
+        .mindmap-container { padding: 40px 20px; border-radius: 8px; overflow-x: auto; background: #ffffff; border: 1px solid #e2e8f0; min-height: 480px; }
+        .tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; padding-left: 0; }
+        .tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 5px 0 5px; transition: all 0.5s; }
+        
+        /* 連接線系統 */
+        .tree li::before, .tree li::after { content: ''; position: absolute; top: 0; right: 50%; border-top: 2px solid #cbd5e1; width: 50%; height: 20px; }
+        .tree li::after { right: auto; left: 50%; border-left: 2px solid #cbd5e1; }
+        .tree li:only-child::after, .tree li:only-child::before { display: none; }
+        .tree li:only-child { padding-top: 0; }
+        .tree li:first-child::before, .tree li:last-child::after { border: none; }
+        .tree li:last-child::before { border-right: 2px solid #cbd5e1; border-radius: 0 5px 0 0; }
+        .tree li:first-child::after { border-radius: 5px 0 0 0; }
+        .tree ul ul::before { content: ''; position: absolute; top: 0; left: 50%; border-left: 2px solid #cbd5e1; width: 0; height: 20px; }
+        
+        /* 節點樣式 */
+        .tree li div { border: 1px solid #cbd5e1; padding: 12px 16px; text-decoration: none; color: #334155; font-size: 14px; border-radius: 8px; display: inline-block; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.5s; }
+        
+        /* 層級特定顏色 */
+        .tree li div.root-node { background: #1e3a8a; color: white; font-weight: bold; font-size: 16px; border: none; }
+        .tree li div.process-node { background: #f1f5f9; font-weight: 600; border-left: 4px solid #3b82f6; text-align: left; }
+        .tree li div.data-node { background: #fffbf2; border: 1px dashed #f59e0b; color: #b45309; font-size: 13px; text-align: left; line-height: 1.5; }
+        
+        code { background-color: #fef3c7; color: #d97706; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .nav-pills .nav-link { color: #475569; border: 1px solid #dee2e6; margin-right: 8px; font-weight: 500; background: white; margin-bottom: 5px; }
+        .nav-pills .nav-link.active { background-color: #1e3a8a; border-color: #1e3a8a; color: white; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">🚧 工程項目教育訓練與數據管理系統</span>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4">
+        
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card p-4">
+                    <h6 class="card-title fw-bold mb-3" style="color: #1e3a8a;">📊 六大工程項目培訓完訓率統計 (Bar Chart)</h6>
+                    <div style="position: relative; height:220px;">
+                        <canvas id="completionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                    <h4 class="fw-bold mb-0" style="color: #1e3a8a;">🧠 施工製程與技術指標心智圖</h4>
+                    
+                    <ul class="nav nav-pills" id="mapTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#bridge-map" type="button">橋梁工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#retaining-map" type="button">擋土工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#drainage-map" type="button">排水工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pipeline-map" type="button">管線工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pavement-map" type="button">鋪面工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#alignment-map" type="button">線形工程</button></li>
+                    </ul>
+                </div>
+
+                <div class="tab-content mindmap-container">
+                    
+                    <div class="tab-pane fade show active tree" id="bridge-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🌉 橋梁工程</div>
+                                <ul>
+                                    <li><div class="process-node">Step 1: 測量放樣</div><ul><li><div class="data-node">📌 座標與高程佈設</div></li></ul></li>
+                                    <li><div class="process-node">Step 2: 基樁工程</div><ul><li><div class="data-node">🔍 孔底沉渣：<code>&le; 20 cm</code></div></li></ul></li>
+                                    <li><div class="process-node">Step 3: 結構物鋼筋</div><ul><li><div class="data-node">🔍 保護層厚度：<code>7.5 cm</code></div></li></ul></li>
+                                    <li><div class="process-node">Step 4: 混凝土澆置</div><ul><li><div class="data-node">📊 品質：28天試體強度</div></li></ul></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="retaining-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🛡️ 擋土工程</div>
+                                <ul>
+                                    <li><div class="process-node">Step 1: 排樁/連續壁</div><ul><li><div class="data-node">🔍 垂直度誤差：<code>1/100~1/200</code></div></li></ul></li>
+                                    <li><div class="process-node">Step 2: 開挖支撐</div><ul><li><div class="data-node">🔍 軸力與變位監測</div></li></ul></li>
+                                    <li><div class="process-node">Step 3: 地錨施作</div><ul><li><div class="data-node">📊 檢驗：Prove Test</div></li></ul></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="drainage-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">💧 排水工程</div>
+                                <ul>
+                                    <li><div class="process-node">Step 1: 路基側溝</div><ul><li><div class="data-node">🔍 洩水坡度：<code>0.5% ~ 1.0%</code><br>⚠️ <span class="text-danger fw-bold">嚴禁倒坡</span></div></li></ul></li>
+                                    <li><div class="process-node">Step 2: 集水井</div><ul><li><div class="data-node">📌 高程複測與格柵蓋</div></li></ul></li>
+                                    <li><div class="process-node">Step 3: 排水箱涵</div><ul><li><div class="data-node">🔍 止水帶安裝<br>📊 壓實度：<code>&ge; 90%</code></div></li></ul></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="pipeline-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">⚡ 管線工程</div>
+                                <ul>
+                                    <li><div class="process-node">Step 1: 前置探勘</div><ul><li><div class="data-node">📌 既有管線探勘與試挖</div></li></ul></li>
+                                    <li><div class="process-node">Step 2: 管線埋設</div><ul><li><div class="data-node">🔍 高程控制<br>📊 檢驗：水密性試驗</div></li></ul></li>
+                                    <li><div class="process-node">Step 3: 回填作業</div><ul><li><div class="data-node">🔍 採用 <code>CLSM</code> 控制</div></li></ul></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="pavement-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🛣️ 鋪面工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">Step 1: 底層與基層</div>
+                                        <ul><li><div class="data-node">🔍 級配壓實度：<code>&ge; 95%</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">Step 2: 透層與黏層</div>
+                                        <ul><li><div class="data-node">📌 噴灑量與養治時間確保</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">Step 3: 瀝青鋪築</div>
+                                        <ul><li><div class="data-node">📊 鋪築溫度：<code>&ge; 120°C</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">Step 4: 滾壓與完工</div>
+                                        <ul><li><div class="data-node">📊 平整度(IRI)：符合規範</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="alignment-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">📏 線形工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">平面線形 (Horizontal)</div>
+                                        <ul><li><div class="data-node">📌 曲線半徑與超高放樣</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">縱斷線形 (Vertical)</div>
+                                        <ul><li><div class="data-node">🔍 縱斷坡度百分比控管</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">橫斷面與視距</div>
+                                        <ul><li><div class="data-node">📌 路拱坡度與停止視距確保</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        const ctx = document.getElementById('completionChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['橋梁工程', '擋土工程', '排水工程', '管線工程', '鋪面工程', '線形工程'],
+                datasets: [{
+                    label: '平均完訓率 (%)',
+                    data: [85, 68, 92, 74, 80, 70],
+                    backgroundColor: ['#1e3a8a', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'],
+                    borderWidth: 0,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } } }
+            }
+        });
+    </script>
+</body>
+</html>
