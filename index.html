@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>道路工程設計幾何與技術指標管理系統</title>
+    <title>佺葉工程顧問道路工程設計指南</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #f4f6f9; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
@@ -11,7 +11,7 @@
         .card { border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-radius: 8px; background-color: white; }
         
         /* 心智圖樹狀結構 CSS */
-        .mindmap-container { padding: 40px 20px; border-radius: 8px; overflow-x: auto; background: #ffffff; border: 1px solid #e2e8f0; min-height: 500px; }
+        .mindmap-container { padding: 40px 20px; border-radius: 8px; overflow-x: auto; background: #ffffff; border: 1px solid #e2e8f0; min-height: 520px; }
         .tree ul { padding-top: 20px; position: relative; transition: all 0.5s; display: flex; justify-content: center; padding-left: 0; }
         .tree li { float: left; text-align: center; list-style-type: none; position: relative; padding: 20px 5px 0 5px; transition: all 0.5s; }
         
@@ -42,7 +42,7 @@
 
     <nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">📐 道路工程設計幾何與技術指標管理系統</span>
+            <span class="navbar-brand mb-0 h1">📐 佺葉工程顧問道路工程設計指南</span>
         </div>
     </nav>
 
@@ -51,6 +51,231 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                    <h4 class="fw-bold mb-0" style="color: #0f172a;">🧠 道路工程設計規範心智圖</h4>
+                    <h4 class="fw-bold mb-0" style="color: #0f172a;">🧠 核心工程設計指南（九大等同主題分項）</h4>
                     
-                    <ul class="nav nav-pills" id
+                    <ul class="nav nav-pills" id="mapTab" role="tablist">
+                        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#alignment-map" type="button">道路線形設計</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#drainage-map" type="button">排水工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#retaining-map" type="button">擋土工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bridge-map" type="button">橋梁工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pipeline-map" type="button">管線工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#lighting-map" type="button">照明工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#earthwork-map" type="button">土方工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sidewalk-map" type="button">人行道工程</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#planting-map" type="button">植栽工程</button></li>
+                    </ul>
+                </div>
+
+                <div class="tab-content mindmap-container">
+                    
+                    <div class="tab-pane fade show active tree" id="alignment-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🛣️ 道路線形設計</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">平面線形 (Horizontal)</div>
+                                        <ul><li><div class="data-node">📌 直線長度上限 <code>20 * V</code><br>🔍 圓曲線半徑與克羅索緩和曲線控制</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">縱斷面設計 (Vertical)</div>
+                                        <ul><li><div class="data-node">🔍 最大縱坡 <code>3% ~ 9%</code> / 最小縱坡 <code>&ge; 0.3%</code><br>📌 二次拋物線豎曲線與停止視距 (SSD) 確保</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">橫斷面幾何 (Cross Section)</div>
+                                        <ul><li><div class="data-node">📌 快車道寬 <code>3.25m ~ 3.50m</code><br>🔍 標準路拱 <code>1.5% ~ 2.0%</code> 橫坡與小半徑拓寬</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">路面結構結構設計</div>
+                                        <ul><li><div class="data-node">📊 柔性路面：<code>AASHTO SN</code> 當量軸重設計<br>📊 剛性路面：版塊撓曲應力控制 / <code>IRI &le; 2.5~3.5</code></div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="drainage-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">💧 排水工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 水理計算與洪峰流量</div>
+                                        <ul><li><div class="data-node">📌 重現期設定：側溝 <code>5年</code>，箱涵 <code>10~25年</code><br>🔍 計算方法：合理化公式法 $Q=CIA/360$</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 側溝與集水設施</div>
+                                        <ul><li><div class="data-node">🔍 洩水坡度：縱坡需 <code>&ge; 0.5%</code>，嚴禁倒坡<br>📌 集水井佈設：間距控制在 <code>20m ~ 30m</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 過路箱涵與管涵</div>
+                                        <ul><li><div class="data-node">📊 水流流速：流速應控制在 <code>0.6 m/s ~ 3.0 m/s</code> 之間<br>🔍 結構物回填：壓實度需 <code>&ge; 90%</code> 或採用 <code>CLSM</code></div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="retaining-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🛡️ 擋土工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 擋土牆型式選定</div>
+                                        <ul><li><div class="data-node">📌 低邊坡：重力式或半重力式擋土牆（<code>H &le; 4m</code>）<br>🔍 高邊坡：懸臂式（<code>H = 4~8m</code>）或扶壁式擋土牆</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 結構穩定性計算</div>
+                                        <ul><li><div class="data-node">📊 安全係數：傾覆常時 <code>FS &ge; 2.0</code>；滑動常時 <code>FS &ge; 1.5</code><br>🔍 承載力檢算：牆底最大地基反力需小於地盤容許承載力</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 牆體排水與回填</div>
+                                        <ul><li><div class="data-node">📌 解壓設施：每 <code>2~3 m²</code> 設置一處 <code>2"~3"</code> 洩水孔<br>🔍 回填材料：嚴禁採用高塑性粘土，需使用砂礫料</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="bridge-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🌉 橋梁工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 下部結構與基礎</div>
+                                        <ul><li><div class="data-node">📌 基礎型式：全套管基樁、版基或沉箱基礎<br>🔍 基樁規範：孔底沉渣厚度 <code>&le; 20 cm</code>（摩擦樁 <code>&le; 5 cm</code>）</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 上部結構幾何</div>
+                                        <ul><li><div class="data-node">📊 上部鋼筋：構造物淨保護層厚度需達 <code>7.5 cm</code><br>📌 預力控制：鋼腱張拉力與延伸量誤差在 <code>&plusmn; 5%</code> 內</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 橋面附屬設施</div>
+                                        <ul><li><div class="data-node">🔍 伸縮縫配置：依伸縮量選用齒狀、橡膠或鋼浪型伸縮縫<br>📊 伸縮構造：兩側平整度嚴格控管，避免車輛跳車</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="pipeline-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">⚡ 管線工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 地下管線佈設幾何</div>
+                                        <ul><li><div class="data-node">📌 最小埋深：快車道下直埋管線最小覆土深度 <code>&ge; 1.2m</code><br>🔍 垂直淨距：不同管線交會時，垂直淨距離 <code>&ge; 15~30cm</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 管線共同管道</div>
+                                        <ul><li><div class="data-node">📊 配置型式：配設電纜管路(CCBOX)或綜合管溝<br>📌 人手孔蓋設計：與路面齊平，周邊高低差 <code>&le; &plusmn;2mm</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 管道回填與壓實</div>
+                                        <ul><li><div class="data-node">🔍 專用回填料：管溝回填全面採用 <code>CLSM</code><br>📊 壓實基準：傳統回填每層厚度 <code>&le; 30cm</code>，壓實度 <code>&ge; 95%</code></div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="lighting-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">💡 照明工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 照度與均勻度規範</div>
+                                        <ul><li><div class="data-node">📌 平均照度：主要道路基準值約 <code>15 ~ 20 Lux</code><br>🔍 均勻度指標：綜合均勻度 $U_o$ (最小/平均) <code>&ge; 0.4</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 燈具幾何配置</div>
+                                        <ul><li><div class="data-node">📊 配置型式：單側、雙側相對、雙側交錯、中央分隔島配置<br>📌 燈桿間距：桿高 $H$ 與間距 $S$ 比例控制在 <code>S = 3H ~ 4H</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 電氣安全與構造</div>
+                                        <ul><li><div class="data-node">🔍 接地電阻：全線燈桿接地電阻 <code>&le; 10 &Omega;</code><br>📊 基礎檢算：需進行風力與地震力之傾覆穩定計算</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="earthwork-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🏗️ 土方工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 土方挖填平衡設計</div>
+                                        <ul><li><div class="data-node">📌 體積修正：考量挖、填方之土壤變化率（$L$ 與 $C$ 值）<br>🔍 計算方法：採用平均斷面法 (Average End Area Method)</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 路基填築與壓實度</div>
+                                        <ul><li><div class="data-node">🔍 分層壓實：分層灑水滾壓，每層鬆散厚度 <code>&le; 30cm</code><br>📊 技術指標：路床頂面以下30cm內壓實度 <code>&ge; 95%</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 土質改良與整地</div>
+                                        <ul><li><div class="data-node">📌 軟弱地盤：換土法、穩定劑改良(水泥/石灰)或加勁格網<br>🔍 邊坡坡度：填方邊坡 <code>&le; 1:1.5</code>；挖方邊坡依土質調整</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="sidewalk-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🚶 人行道工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 無障礙幾何線形</div>
+                                        <ul><li><div class="data-node">📌 橫斷坡度：標準橫坡 <code>&le; 1.0%</code>（最大不得超過 <code>2.0%</code>）<br>🔍 縱斷坡度：原則依道路縱坡，<code>&ge; 5%</code> 時需設扶手平台</div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 緣石斜坡與無障礙通路</div>
+                                        <ul><li><div class="data-node">📊 斜坡道坡度：無障礙緣石斜坡坡度需 <code>&le; 1:12</code><br>📌 通行淨寬：人行道最小無障礙通行淨寬度 <code>&ge; 1.5m</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 鋪面構造與導盲設施</div>
+                                        <ul><li><div class="data-node">🔍 高壓透水磚：符合透水基準，基層級配壓實度 <code>&ge; 90%</code><br>📊 警示帶設計：路口設置定位構磚（點狀）與導向構磚（條狀）</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-pane fade tree" id="planting-map">
+                        <ul>
+                            <li>
+                                <div class="root-node">🌿 植栽工程</div>
+                                <ul>
+                                    <li>
+                                        <div class="process-node">1. 植栽帶與植生地幾何</div>
+                                        <ul><li><div class="data-node">📌 喬木植栽帶：淨寬度建議 <code>&ge; 1.5m</code>，確保根系發育空間<br>🔍 客土深度：喬木層 <code>&ge; 100~120cm</code>；灌木層 <code>&ge; 45~60cm</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">2. 行車視距與淨空安全</div>
+                                        <ul><li><div class="data-node">📊 視距三角區：路口交會處灌木高度需 <code>&le; 50cm</code>，避免阻擋視線<br>📌 垂直淨空：樹冠修剪維護需符合道路通視淨空高度 <code>&ge; 4.6m</code></div></li></ul>
+                                    </li>
+                                    <li>
+                                        <div class="process-node">3. 結構防護與排水</div>
+                                        <ul><li><div class="data-node">🔍 防根設施：鄰路面側加設阻根板，避免根系破壞鋪面結構<br>📊 植生穴排水：穴底具良好滲透性，必要時配置盲溝導水</div></li></ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
